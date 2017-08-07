@@ -1,4 +1,4 @@
-import time
+# -*- coding: utf-8 -*-
 
 debug = False
 try:
@@ -21,7 +21,7 @@ def setup(out_pins, in_pins):
     for out_pin in out_pins:
         GPIO.setup(out_pin, GPIO.OUT)
     for in_pin in in_pins:
-        GPIO.setup(in_pin, GPIO.IN)
+        GPIO.setup(in_pin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 
 def set_on(pin):
