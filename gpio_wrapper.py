@@ -1,7 +1,6 @@
 import time
 
 debug = False
-
 try:
     # noinspection PyUnresolvedReferences
     import RPi.GPIO as GPIO
@@ -43,8 +42,8 @@ def set_off(pin):
 
 def wait_on(pin):
     if debug:
-        print("Waiting for rising edge on pin", pin, "(1000ms sleep)")
-        time.sleep(1)
+        print("Waiting for rising edge on pin", pin)
+        input("Press enter to continue: ")
         return
 
     GPIO.wait_for_edge(pin, GPIO.RISING)
