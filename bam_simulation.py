@@ -2,6 +2,7 @@
 import time
 import random
 import gpio_wrapper
+import media_player_wrapper
 
 # Maximale Anzahl aktivierter Kanäle (inklusive immer an)
 MAX_ENABLED = 3
@@ -78,14 +79,13 @@ while True:
     for channel in ALWAYS_ON_CHANNELS:
         gpio_wrapper.set_on(channel)
 
-    time_ms = 0
+    start_time = time.time()
     time_step_ms = 10
-    while time_ms < VIDEO_LENGTH_SECONDS * 1000:
+    while (time.time() - start_time) * 1000 < VIDEO_LENGTH_SECONDS * 1000:
         if active_channel_count() < MAX_ENABLED:
             toggle_channel_random(find_any_off_channel())
 
         time.sleep(0.01)
-        time_ms += time_step_ms
         update_channels(time_step_ms)
 
     for pin in ALWAYS_ON_CHANNELS + [channel["pin"] for channel in CHANNELS]:
