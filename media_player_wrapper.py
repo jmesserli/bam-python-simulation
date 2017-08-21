@@ -8,7 +8,8 @@ if returncode == 0:
 
 def play(path):
     if player == "vlc":
-        pass
+        subprocess.Popen(["cvlc", "--fullscreen", path])
 
     elif player == "omx":
+        subprocess.Popen(["omxplayer", path])
         pass

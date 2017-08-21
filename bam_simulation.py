@@ -25,7 +25,8 @@ CHANNELS = [
     {"pin": 31, "minOnTime": 1000, "maxOnTime": 5000},
 ]
 
-VIDEO_LENGTH_SECONDS = 10
+VIDEO_FILE = "video/SampleVideo_1280x720_5mb.mp4"
+VIDEO_LENGTH_SECONDS = 30
 
 # Setup GPIO mode & pins
 gpio_wrapper.setup(ALWAYS_ON_CHANNELS + [it["pin"] for it in CHANNELS], [INPUT_PIN])
@@ -75,7 +76,7 @@ def update_channels(time_step):
 while True:
     reset_channels()
     gpio_wrapper.wait_on(INPUT_PIN)
-    # TODO play video
+    media_player_wrapper.play(VIDEO_FILE)
     for channel in ALWAYS_ON_CHANNELS:
         gpio_wrapper.set_on(channel)
 
