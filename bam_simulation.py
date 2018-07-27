@@ -75,7 +75,7 @@ def update_channels(time_step):
 
 while True:
     reset_channels()
-    gpio_wrapper.wait_on(INPUT_PIN)
+    gpio_wrapper.wait_toggle(INPUT_PIN, 500)  # Button needs to be depressed for at least 500 ms
     media_player_wrapper.play(VIDEO_FILE)
     for channel in ALWAYS_ON_CHANNELS:
         gpio_wrapper.set_on(channel)

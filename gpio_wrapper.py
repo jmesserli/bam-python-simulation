@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import time
 
 debug = False
 try:
@@ -47,6 +48,26 @@ def wait_on(pin):
         return
 
     GPIO.wait_for_edge(pin, GPIO.RISING)
+
+
+def wait_off(pin):
+    if debug:
+        print("Waiting for falling edge on pin", pin)
+        input("Press enter to continue: ")
+        return
+
+    GPIO.wait_for_edge(pin, GPIO.FALLING)
+
+
+def wait_toggle(pin, min_time=1000):
+    while True:
+        wait_on(pin)
+        start = time.time()
+        wait_off(pin)
+        end = time.time()
+
+        if (end - start) * 1000 >= min_time:
+            break
 
 
 def clean():
